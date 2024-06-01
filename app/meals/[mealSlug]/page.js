@@ -46,7 +46,7 @@ export default function MealDetailsPage({ params }) {
 export const dynamicParams = true;
 
 export async function generateStaticParams() {
-  const meals = await getMeals();
+  const meals = getMeals();
   return meals.map((meal) => ({
     mealSlug: meal.slug,
   }));
