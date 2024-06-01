@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
-import { getMeal } from "@/lib/meals";
+import {getMeal, getMeals} from "@/lib/meals";
 
 import classes from "./page.module.css";
 
@@ -13,7 +13,7 @@ export async function generateMetadata({ params }) {
   return { title: meal.title, description: meal.summary };
 }
 
-function MealDetailsPage({ params }) {
+export default function MealDetailsPage({ params }) {
   const meal = getMeal(params.mealSlug);
   if (!meal) notFound();
 
@@ -42,4 +42,9 @@ function MealDetailsPage({ params }) {
   );
 }
 
-export default MealDetailsPage;
+export async function generateStaticParams() {
+  const meals = await getMeals();
+  return meals.map((meal) => ({
+    mealSlug: meal.slug,
+  }));
+}
