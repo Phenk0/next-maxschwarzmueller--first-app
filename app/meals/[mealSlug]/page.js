@@ -5,6 +5,8 @@ import {getMeal, getMeals} from "@/lib/meals";
 
 import classes from "./page.module.css";
 
+export const revalidate = 10;
+
 export async function generateMetadata({ params }) {
   const meal = getMeal(params.mealSlug);
 
@@ -41,6 +43,7 @@ export default function MealDetailsPage({ params }) {
     </>
   );
 }
+export const dynamicParams = true;
 
 export async function generateStaticParams() {
   const meals = await getMeals();
