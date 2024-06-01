@@ -11,8 +11,8 @@ export const metadata = {
   description: "Browse the delicious meals shared by our vibrant community.",
 };
 
-async function Meals() {
-  const meals = await getMeals();
+ function Meals() {
+  const meals = getMeals();
   return <MealsGrid meals={meals} />;
 }
 
